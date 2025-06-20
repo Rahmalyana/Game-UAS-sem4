@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gerak1 : MonoBehaviour
+public class gerak2 : MonoBehaviour
 {
     private Rigidbody2D body;
     private Animator anim;
@@ -20,13 +20,13 @@ public class gerak1 : MonoBehaviour
 
     void Update()
     {
-        // Hanya A dan D untuk gerak kiri dan kanan
+        // Player 2: kontrol dengan arrow key
         float horizontalInput = 0f;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             horizontalInput = -1f;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             horizontalInput = 1f;
         }
@@ -43,19 +43,19 @@ public class gerak1 : MonoBehaviour
             transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
         }
 
-        // Tombol W untuk loncat, hanya bisa loncat saat grounded
-        if (Input.GetKeyDown(KeyCode.W) && grounded)
+        // Arrow Up untuk loncat
+        if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
             Jump();
         }
 
-        // Batasi tinggi loncatan
+        // Batas tinggi loncatan
         if (transform.position.y > maxJumpHeight && body.velocity.y > 0)
         {
             body.velocity = new Vector2(body.velocity.x, 0f);
         }
 
-        // Update parameter animator
+        // Update animator
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", grounded);
     }
