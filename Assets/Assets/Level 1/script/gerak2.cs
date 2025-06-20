@@ -7,6 +7,8 @@ public class gerak2 : MonoBehaviour
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded;
+    private float jumpStartY;
+    private bool isJumping = false;
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 7f;
@@ -50,9 +52,10 @@ public class gerak2 : MonoBehaviour
         }
 
         // Batas tinggi loncatan
-        if (transform.position.y > maxJumpHeight && body.velocity.y > 0)
+        if (isJumping && transform.position.y > jumpStartY + maxJumpHeight && body.velocity.y > 0)
         {
             body.velocity = new Vector2(body.velocity.x, 0f);
+            isJumping = false;
         }
 
         // Update animator
@@ -62,8 +65,10 @@ public class gerak2 : MonoBehaviour
 
     private void Jump()
     {
+        jumpStartY = transform.position.y;
         body.velocity = new Vector2(body.velocity.x, jumpForce);
         grounded = false;
+        isJumping = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,6 +76,15 @@ public class gerak2 : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             grounded = true;
+            isJumping = false;
+        }
+    }
+
+private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = false;
         }
     }
 }

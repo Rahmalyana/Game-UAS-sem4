@@ -7,6 +7,9 @@ public class gerak1 : MonoBehaviour
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded;
+    private float jumpStartY;
+    private bool isJumping = false;
+
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 7f;
@@ -49,11 +52,13 @@ public class gerak1 : MonoBehaviour
             Jump();
         }
 
-        // Batasi tinggi loncatan
-        if (transform.position.y > maxJumpHeight && body.velocity.y > 0)
-        {
-            body.velocity = new Vector2(body.velocity.x, 0f);
-        }
+        // Batasi tinggi lompatan berdasarkan jarak dari titik awal
+if (isJumping && transform.position.y > jumpStartY + maxJumpHeight && body.velocity.y > 0)
+{
+    body.velocity = new Vector2(body.velocity.x, 0f);
+    isJumping = false;
+}
+
 
         // Update parameter animator
         anim.SetBool("run", horizontalInput != 0);
@@ -61,16 +66,42 @@ public class gerak1 : MonoBehaviour
     }
 
     private void Jump()
-    {
-        body.velocity = new Vector2(body.velocity.x, jumpForce);
-        grounded = false;
-    }
+{
+    jumpStartY = transform.position.y;
+    body.velocity = new Vector2(body.velocity.x, jumpForce);
+    grounded = false;
+    isJumping = true;
+}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Ground"))
+    {
+        grounded = true;
+        isJumping = false;
+    }
+}
+
+
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Ground"))
+    //     {
+    //         Debug.Log("Grounded");
+    //         grounded = true;
+    //     }
+    //     else if(!grounded)
+    //     {
+    //         Debug.Log("Not Grounded");
+    //     }
+    // }
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            grounded = true;
+            grounded = false;
         }
     }
+
 }
