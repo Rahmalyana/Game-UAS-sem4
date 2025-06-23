@@ -9,12 +9,13 @@ public class gerak2 : MonoBehaviour
     private bool grounded;
     private float jumpStartY;
     private bool isJumping = false;
+    private bool isSliding = false;
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float maxJumpHeight = 5f;
 
-    private void Awake()
+    void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -22,45 +23,50 @@ public class gerak2 : MonoBehaviour
 
     void Update()
     {
-        // Player 2: kontrol dengan arrow key
         float horizontalInput = 0f;
-        if (Input.GetKey(KeyCode.LeftArrow))
+
+        // Cek apakah sliding
+        isSliding = Input.GetKey(KeyCode.DownArrow) && grounded && !isJumping;
+
+        // Input gerak kanan/kiri
+        if (!isSliding)
         {
-            horizontalInput = -1f;
+            if (Input.GetKey(KeyCode.LeftArrow)) horizontalInput = -1f;
+            else if (Input.GetKey(KeyCode.RightArrow)) horizontalInput = 1f;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else
         {
-            horizontalInput = 1f;
+            // Sliding bisa sambil gerak
+            if (Input.GetKey(KeyCode.LeftArrow)) horizontalInput = -1f;
+            else if (Input.GetKey(KeyCode.RightArrow)) horizontalInput = 1f;
         }
 
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        float currentSpeed = isSliding ? speed * 0.8f : speed;
+        body.velocity = new Vector2(horizontalInput * currentSpeed, body.velocity.y);
 
-        // Flip karakter
+        // Flip arah karakter
         if (horizontalInput > 0.01f)
-        {
             transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-        }
         else if (horizontalInput < -0.01f)
-        {
             transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
-        }
 
-        // Arrow Up untuk loncat
+        // Loncat
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
             Jump();
         }
 
-        // Batas tinggi loncatan
+        // Batasi tinggi loncatan
         if (isJumping && transform.position.y > jumpStartY + maxJumpHeight && body.velocity.y > 0)
         {
             body.velocity = new Vector2(body.velocity.x, 0f);
             isJumping = false;
         }
 
-        // Update animator
-        anim.SetBool("run", horizontalInput != 0);
+        // Update animasi
+        anim.SetBool("run", horizontalInput != 0 && !isSliding);
         anim.SetBool("grounded", grounded);
+        anim.SetBool("isSliding", isSliding);
     }
 
     private void Jump()
@@ -80,7 +86,7 @@ public class gerak2 : MonoBehaviour
         }
     }
 
-private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {

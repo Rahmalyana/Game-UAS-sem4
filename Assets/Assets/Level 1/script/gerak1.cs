@@ -9,7 +9,7 @@ public class gerak1 : MonoBehaviour
     private bool grounded;
     private float jumpStartY;
     private bool isJumping = false;
-
+    private bool isSliding = false;
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 7f;
@@ -22,79 +22,68 @@ public class gerak1 : MonoBehaviour
     }
 
     void Update()
-    {
-        // Hanya A dan D untuk gerak kiri dan kanan
-        float horizontalInput = 0f;
-        if (Input.GetKey(KeyCode.A))
-        {
-            horizontalInput = -1f;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            horizontalInput = 1f;
-        }
-
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
-        // Flip karakter
-        if (horizontalInput > 0.01f)
-        {
-            transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-        }
-        else if (horizontalInput < -0.01f)
-        {
-            transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
-        }
-
-        // Tombol W untuk loncat, hanya bisa loncat saat grounded
-        if (Input.GetKeyDown(KeyCode.W) && grounded)
-        {
-            Jump();
-        }
-
-        // Batasi tinggi lompatan berdasarkan jarak dari titik awal
-if (isJumping && transform.position.y > jumpStartY + maxJumpHeight && body.velocity.y > 0)
 {
-    body.velocity = new Vector2(body.velocity.x, 0f);
-    isJumping = false;
-}
+    float horizontalInput = 0f;
 
+    // Deteksi tombol slide
+    isSliding = Input.GetKey(KeyCode.S) && grounded && !isJumping;
 
-        // Update parameter animator
-        anim.SetBool("run", horizontalInput != 0);
-        anim.SetBool("grounded", grounded);
+    if (!isSliding)
+    {
+        if (Input.GetKey(KeyCode.A)) horizontalInput = -1f;
+        else if (Input.GetKey(KeyCode.D)) horizontalInput = 1f;
+    }
+    else
+    {
+        // Boleh gerak saat sliding juga
+        if (Input.GetKey(KeyCode.A)) horizontalInput = -1f;
+        else if (Input.GetKey(KeyCode.D)) horizontalInput = 1f;
     }
 
-    private void Jump()
-{
-    jumpStartY = transform.position.y;
-    body.velocity = new Vector2(body.velocity.x, jumpForce);
-    grounded = false;
-    isJumping = true;
-}
+    float currentSpeed = isSliding ? speed * 0.8f : speed;
+    body.velocity = new Vector2(horizontalInput * currentSpeed, body.velocity.y);
 
-private void OnCollisionEnter2D(Collision2D collision)
-{
-    if (collision.gameObject.CompareTag("Ground"))
+    // Flip karakter
+    if (horizontalInput > 0.01f)
+        transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+    else if (horizontalInput < -0.01f)
+        transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
+
+    // Jump
+    if (Input.GetKeyDown(KeyCode.W) && grounded)
     {
-        grounded = true;
+        Jump();
+    }
+
+    // Batasi tinggi lompatan
+    if (isJumping && transform.position.y > jumpStartY + maxJumpHeight && body.velocity.y > 0)
+    {
+        body.velocity = new Vector2(body.velocity.x, 0f);
         isJumping = false;
     }
+
+    // Update animator
+    anim.SetBool("run", horizontalInput != 0 && !isSliding);
+    anim.SetBool("grounded", grounded);
+    anim.SetBool("isSliding", isSliding);
 }
 
+    private void Jump()
+    {
+        jumpStartY = transform.position.y;
+        body.velocity = new Vector2(body.velocity.x, jumpForce);
+        grounded = false;
+        isJumping = true;
+    }
 
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Ground"))
-    //     {
-    //         Debug.Log("Grounded");
-    //         grounded = true;
-    //     }
-    //     else if(!grounded)
-    //     {
-    //         Debug.Log("Not Grounded");
-    //     }
-    // }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+            isJumping = false;
+        }
+    }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -103,5 +92,4 @@ private void OnCollisionEnter2D(Collision2D collision)
             grounded = false;
         }
     }
-
 }
