@@ -92,4 +92,5 @@ public class gerak1 : MonoBehaviour
             grounded = false;
         }
     }
+    
 }
