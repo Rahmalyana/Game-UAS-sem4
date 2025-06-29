@@ -4,7 +4,8 @@ public class SnowballSpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
     public GameObject snowballPrefab;     // prefab bola yang akan di-spawn
-    public float spawnInterval = 3f;      // jeda spawn dalam detik
+    public float spawnInterval = 5f;      // jeda spawn dalam detik
+    public int maxSnowballs = 10;
 
     void Start()
     {

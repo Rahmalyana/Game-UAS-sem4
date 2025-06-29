@@ -27,7 +27,7 @@ public class MovingPlatform : MonoBehaviour
         localTimer += Time.deltaTime * speed;
 
         // Cek nilai amplitude setiap frame
-        Debug.Log($"{gameObject.name} Amplitude: {amplitude}");
+        // Debug.Log($"{gameObject.name} Amplitude: {amplitude}");
 
         float yOffset = Mathf.Sin(localTimer) * amplitude;
 

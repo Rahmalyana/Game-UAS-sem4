@@ -8,7 +8,7 @@ public class Snowball : MonoBehaviour
     void Start()
     {
         // Destroy otomatis setelah 10 detik (opsional)
-        Destroy(gameObject, 10f);
+        //Destroy(gameObject, 10f);
 
         // Tambah sedikit dorongan ke kanan
         Rigidbody2D rb = GetComponent<Rigidbody2D>();

@@ -17,11 +17,13 @@ public class Collectible : MonoBehaviour
                 case ItemType.Star:
                     Debug.Log("Star Collected!");
                     // Tambah skor di sini kalau pakai sistem skor
+                    GameManager.Instance.AddStar(); // ✅ Tambahkan ini
                     break;
 
                 case ItemType.Heart:
                     Debug.Log("Heart Collected!");
                     // Tambah nyawa player di sini kalau ada sistem nyawa
+                    GameManager.Instance.AddHeart(); // ✅ Tambahkan ini
                     break;
             }
 
