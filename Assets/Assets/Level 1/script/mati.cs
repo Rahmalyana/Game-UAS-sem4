@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
-    // public string sceneToLoad = "PilihLevel"; // Ganti sesuai nama scene pilih level kamu
+    public string sceneToLoad = "main menu"; // Ganti sesuai nama scene pilih level kamu
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +17,7 @@ public class PlayerDeath : MonoBehaviour
     void GameOver()
     {
         // Bisa tambahkan efek mati, animasi, delay, dll
-        // SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(sceneToLoad);
+        
     }
 }

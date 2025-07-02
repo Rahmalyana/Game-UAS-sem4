@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    // Start is called before the first frame update
     public enum ItemType { Star, Heart }
     public ItemType itemType;
+
+    public AudioClip starSound;
+    public AudioClip heartSound;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,18 +18,18 @@ public class Collectible : MonoBehaviour
             {
                 case ItemType.Star:
                     Debug.Log("Star Collected!");
-                    // Tambah skor di sini kalau pakai sistem skor
-                    GameManager.Instance.AddStar(); // ✅ Tambahkan ini
+                    GameManager.Instance.PlaySound(starSound);
+                    GameManager.Instance.AddStar();
                     break;
 
                 case ItemType.Heart:
                     Debug.Log("Heart Collected!");
-                    // Tambah nyawa player di sini kalau ada sistem nyawa
-                    GameManager.Instance.AddHeart(); // ✅ Tambahkan ini
+                    GameManager.Instance.PlaySound(heartSound);
+                    GameManager.Instance.AddHeart();
                     break;
             }
 
-            Destroy(gameObject); // Hilangkan item setelah diambil
+            Destroy(gameObject, 0.1f);
         }
     }
 }
