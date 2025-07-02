@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 1237704958}
   - component: {fileID: 1237704956}
   - component: {fileID: 1237704959}
+  - component: {fileID: 1237704960}
   m_Layer: 0
   m_Name: Button_Keluar
   m_TagString: Untagged
@@ -613,6 +614,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.83, y: 1.8500204}
   m_EdgeRadius: 0
+--- !u!114 &1237704960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237704955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b863f261d30104a8c4788d6dc26f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1340345940
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +834,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1478058935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef325566d799af4aa31ec6d3747796b, type: 3}
+  m_Script: {fileID: 11500000, guid: 64b863f261d30104a8c4788d6dc26f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonLevel1: {fileID: 1706460437}
@@ -1136,7 +1149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1706460437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef325566d799af4aa31ec6d3747796b, type: 3}
+  m_Script: {fileID: 11500000, guid: 64b863f261d30104a8c4788d6dc26f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonLevel1: {fileID: 1706460437}
@@ -1283,7 +1296,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835486687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef325566d799af4aa31ec6d3747796b, type: 3}
+  m_Script: {fileID: 11500000, guid: 64b863f261d30104a8c4788d6dc26f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonLevel1: {fileID: 1706460437}
