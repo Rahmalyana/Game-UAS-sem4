@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static GameManager Instance;
 
     public int starCount = 0;
@@ -14,10 +13,14 @@ public class GameManager : MonoBehaviour
     public Text starText;
     public Text heartText;
 
+    private AudioSource audioSource;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void AddStar()
@@ -36,5 +39,11 @@ public class GameManager : MonoBehaviour
     {
         if (starText) starText.text = starCount.ToString();
         if (heartText) heartText.text = heartCount.ToString();
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+            audioSource.PlayOneShot(clip);
     }
 }
