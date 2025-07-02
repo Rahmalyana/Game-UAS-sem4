@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 600748305}
   - component: {fileID: 600748304}
   m_Layer: 0
-  m_Name: Button_28
+  m_Name: Button_Kredit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 630930490}
   - component: {fileID: 630930491}
   m_Layer: 0
-  m_Name: Button_16
+  m_Name: Button_Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 1606962258}
   - component: {fileID: 1606962257}
   m_Layer: 0
-  m_Name: Button_136
+  m_Name: Button_Keluar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

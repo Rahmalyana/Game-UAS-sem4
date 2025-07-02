@@ -5,43 +5,88 @@ public class HalamanManager : MonoBehaviour
 {
     private bool showExitPopup = false;
 
+    [Header("Level Buttons")]
+    public GameObject buttonLevel1;
+    public GameObject buttonLevel2;
+    public GameObject buttonLevel3;
+
+    [Header("Lock Sprite (assign di Inspector)")]
+    public Sprite lockSprite;
+
+    void Start()
+    {
+        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
+
+        // Level 1 selalu aktif
+        SetButtonState(buttonLevel1, true);
+
+        // Level 2 hanya aktif jika sudah unlock
+        SetButtonState(buttonLevel2, unlockedLevel >= 2);
+
+        // Level 3 hanya aktif jika sudah unlock
+        SetButtonState(buttonLevel3, unlockedLevel >= 3);
+    }
+
+    void SetButtonState(GameObject button, bool isUnlocked)
+    {
+        if (button == null) return;
+
+        // Dapatkan SpriteRenderer
+        var sr = button.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Color c = sr.color;
+            c.a = isUnlocked ? 1f : 0.4f; // jika terkunci, buat transparan
+            sr.color = c;
+        }
+
+        // Nonaktifkan Collider2D jika terkunci
+        var col = button.GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = isUnlocked;
+    }
+
+
     void OnMouseDown()
     {
         string objectName = gameObject.name;
         string currentScene = SceneManager.GetActiveScene().name;
 
+        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
         Debug.Log($"Klik objek: {objectName} di scene: {currentScene}");
 
         switch (objectName)
         {
-            case "Button_28":
+            case "Button_Kredit":
                 SceneManager.LoadScene("credit");
                 break;
 
-            case "Button_16":
+            case "Button_Play":
                 SceneManager.LoadScene("main menu");
                 break;
 
-            case "12":
-                SceneManager.LoadScene("Level-2");
-                break;
-
-            case "13":
+            case "Level-1":
                 SceneManager.LoadScene("Level-1");
                 break;
 
-            case "14":
-                SceneManager.LoadScene("Level-3");
+            case "Level-2":
+                if (unlockedLevel >= 2)
+                    SceneManager.LoadScene("Level-2");
                 break;
 
-            case "Button_136":
+            case "Level-3":
+                if (unlockedLevel >= 3)
+                    SceneManager.LoadScene("Level-3");
+                break;
+
+            case "Button_Keluar":
                 if (currentScene == "main menu")
                 {
-                    SceneManager.LoadScene("opening"); // normal behavior
+                    SceneManager.LoadScene("opening");
                 }
                 else if (currentScene == "opening")
                 {
-                    showExitPopup = true; // show confirmation
+                    showExitPopup = true;
                 }
                 break;
 

@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 496896764}
   - component: {fileID: 496896763}
   m_Layer: 0
-  m_Name: Button_11 (1)
+  m_Name: Button_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 672969926}
   - component: {fileID: 672969925}
   m_Layer: 0
-  m_Name: Button_11
+  m_Name: Button_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 1083919207}
   - component: {fileID: 1083919206}
   m_Layer: 0
-  m_Name: Idle__000_0
+  m_Name: cowok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 1237704956}
   - component: {fileID: 1237704959}
   m_Layer: 0
-  m_Name: Button_136
+  m_Name: Button_Keluar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -564,6 +564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef325566d799af4aa31ec6d3747796b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonLevel1: {fileID: 0}
+  buttonLevel2: {fileID: 0}
+  buttonLevel3: {fileID: 0}
+  lockSprite: {fileID: 0}
 --- !u!61 &1237704959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -690,7 +694,7 @@ GameObject:
   - component: {fileID: 1478058938}
   - component: {fileID: 1478058939}
   m_Layer: 0
-  m_Name: 14
+  m_Name: Level-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,6 +824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef325566d799af4aa31ec6d3747796b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonLevel1: {fileID: 1706460437}
+  buttonLevel2: {fileID: 1835486687}
+  buttonLevel3: {fileID: 1478058935}
+  lockSprite: {fileID: 0}
 --- !u!1 &1623251525
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,7 +923,7 @@ GameObject:
   - component: {fileID: 1706301172}
   - component: {fileID: 1706301171}
   m_Layer: 0
-  m_Name: Idle (1)_0
+  m_Name: cewek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +1009,7 @@ GameObject:
   - component: {fileID: 1706460440}
   - component: {fileID: 1706460441}
   m_Layer: 0
-  m_Name: 12
+  m_Name: Level-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1131,6 +1139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef325566d799af4aa31ec6d3747796b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonLevel1: {fileID: 1706460437}
+  buttonLevel2: {fileID: 1835486687}
+  buttonLevel3: {fileID: 1478058935}
+  lockSprite: {fileID: 0}
 --- !u!1 &1835486687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1156,7 @@ GameObject:
   - component: {fileID: 1835486690}
   - component: {fileID: 1835486691}
   m_Layer: 0
-  m_Name: 13
+  m_Name: Level-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1274,6 +1286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef325566d799af4aa31ec6d3747796b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonLevel1: {fileID: 1706460437}
+  buttonLevel2: {fileID: 1835486687}
+  buttonLevel3: {fileID: 1478058935}
+  lockSprite: {fileID: 0}
 --- !u!1 &1838101213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1301,7 @@ GameObject:
   - component: {fileID: 1838101215}
   - component: {fileID: 1838101214}
   m_Layer: 0
-  m_Name: 11
+  m_Name: judul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1369,7 +1385,7 @@ GameObject:
   - component: {fileID: 2002004452}
   - component: {fileID: 2002004451}
   m_Layer: 0
-  m_Name: Button_11 (2)
+  m_Name: Button_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,5 +1473,5 @@ SceneRoots:
   - {fileID: 1623251527}
   - {fileID: 1340345943}
   - {fileID: 672969926}
-  - {fileID: 2002004452}
   - {fileID: 496896764}
+  - {fileID: 2002004452}
