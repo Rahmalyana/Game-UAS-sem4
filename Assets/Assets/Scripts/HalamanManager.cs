@@ -66,17 +66,24 @@ public class HalamanManager : MonoBehaviour
                 break;
 
             case "Level-1":
+                PlayerPrefs.SetString("LastPlayedLevel", "Level-1");
                 SceneManager.LoadScene("Level-1");
                 break;
 
             case "Level-2":
                 if (unlockedLevel >= 2)
+                {
+                    PlayerPrefs.SetString("LastPlayedLevel", "Level-2");
                     SceneManager.LoadScene("Level-2");
+                }
                 break;
 
             case "Level-3":
                 if (unlockedLevel >= 3)
+                {
+                    PlayerPrefs.SetString("LastPlayedLevel", "Level-3");
                     SceneManager.LoadScene("Level-3");
+                }
                 break;
 
             case "Button_Keluar":
@@ -88,6 +95,19 @@ public class HalamanManager : MonoBehaviour
                 {
                     showExitPopup = true;
                 }
+                break;
+
+            case "Button_Home":
+                SceneManager.LoadScene("opening");
+                break;
+
+            case "Button_Exit":
+                SceneManager.LoadScene("main menu");
+                break;
+            
+            case "Button_Ulangi":
+                string lastLevel = PlayerPrefs.GetString("LastPlayedLevel", "Level-1");
+                SceneManager.LoadScene(lastLevel);
                 break;
 
             default:

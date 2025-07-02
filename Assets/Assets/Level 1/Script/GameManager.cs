@@ -27,7 +27,13 @@ public class GameManager : MonoBehaviour
     {
         starCount++;
         UpdateUI();
+
+        // Simpan ke PlayerPrefs
+        //PlayerPrefs.SetInt("StarTotal", 0);
+        PlayerPrefs.SetInt("StarTotal", starCount);
+        PlayerPrefs.Save();
     }
+
 
     public void AddHeart()
     {
