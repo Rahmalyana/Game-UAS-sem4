@@ -35,7 +35,7 @@ public class PressurePlate : MonoBehaviour
         // {
         //     playerOnPlate = true;
         // }
-        if (!triggered && other.CompareTag("Player"))
+        if (!triggered && (other.CompareTag("cewek") || other.CompareTag("cowok")))
         {
             triggered = true; // Aktifkan trigger hanya sekali
         }

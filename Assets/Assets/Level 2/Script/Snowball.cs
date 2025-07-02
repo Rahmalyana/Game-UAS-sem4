@@ -2,16 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Snowball : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Rigidbody2D rb;
+
+    [SerializeField] private float speed = 10f;         // kecepatan snowball
+    [SerializeField] private float rotationSpeed = 360f; // putaran snowball (derajat per detik)
+
     void Start()
     {
-        // Destroy otomatis setelah 10 detik (opsional)
-        //Destroy(gameObject, 10f);
+        rb = GetComponent<Rigidbody2D>();
 
-        // Tambah sedikit dorongan ke kanan
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(100f, 0f)); // arah X, nilai bisa kamu sesuaikan
+        // Reset dulu kecepatan kalau perlu
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        // Set langsung kecepatan ke arah kanan
+        rb.velocity = new Vector2(speed, rb.velocity.y);
+
+        // Tambahkan efek rotasi searah putaran menggelinding
+        rb.angularVelocity = -rotationSpeed;
+
+        // (Opsional) Pastikan physics tidak direm oleh drag
+        rb.drag = 0f;
+        rb.angularDrag = 0f;
     }
 }
