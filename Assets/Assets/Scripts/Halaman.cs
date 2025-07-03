@@ -20,7 +20,17 @@ public class Halaman : MonoBehaviour
     {
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
-        // Level 1 selalu aktif
+        // === RESET OTOMATIS JIKA SEMUA LEVEL SUDAH DIBUKA ===
+        if (unlockedLevel >= 3)
+        {
+            Debug.Log("Semua level sudah terbuka. Reset progress dan mulai dari Level-1...");
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("Level-1");
+            return; // hentikan eksekusi lanjut
+        }
+
+        // Set button level
         SetButtonState(buttonLevel1, true);
         SetButtonState(buttonLevel2, unlockedLevel >= 2);
         SetButtonState(buttonLevel3, unlockedLevel >= 3);
@@ -30,10 +40,8 @@ public class Halaman : MonoBehaviour
     {
         if (button == null) return;
 
-        // Aktifkan atau nonaktifkan interaksi tombol
         button.interactable = isUnlocked;
 
-        // Opsional: ubah transparansi visual (warna gambar)
         var image = button.GetComponent<Image>();
         if (image != null)
         {
@@ -63,7 +71,7 @@ public class Halaman : MonoBehaviour
         }
     }
 
-    // === Fungsi Navigasi Scene ===
+    // === Navigasi Scene ===
     public void Home() => SceneManager.LoadScene("Home");
     public void PilihLevel() => SceneManager.LoadScene("PilihLevel");
     public void Credit() => SceneManager.LoadScene("Credit");
@@ -89,6 +97,14 @@ public class Halaman : MonoBehaviour
     {
         string lastLevel = PlayerPrefs.GetString("LastLevel", "Level-1");
         SceneManager.LoadScene(lastLevel);
+    }
+
+    public void ResetProgress()
+    {
+        Debug.Log("Progress di-reset manual.");
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("Level-1");
     }
 
     void OnGUI()
