@@ -82,6 +82,7 @@ public class gerak1 : MonoBehaviour
         {
             grounded = true;
             isJumping = false;
+            Debug.Log("Grounded: " + grounded);
         }
     }
 
@@ -90,6 +91,7 @@ public class gerak1 : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             grounded = false;
+            Debug.Log("Jumping: " + isJumping);
         }
     }
     

@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Assets/Scenes/opening.unity
+    path: Assets/Assets/Scenes/Home.unity
     guid: bd211a8c95a53c145825a4f18888fc9b
   - enabled: 1
-    path: Assets/Assets/Scenes/credit.unity
+    path: Assets/Assets/Scenes/Credit.unity
     guid: 284d7022d36327641802d3f80107731e
   - enabled: 1
-    path: Assets/Assets/Scenes/cutscane.unity
+    path: Assets/Assets/Scenes/CutScene.unity
     guid: 522dcfc66af75f94391cc83747bed93e
   - enabled: 1
-    path: Assets/Assets/Scenes/main menu.unity
+    path: Assets/Assets/Scenes/PilihLevel.unity
     guid: 4de7fd0438e198246ac8dfff2a341a3d
   - enabled: 1
     path: Assets/Assets/Scenes/Level-1.unity
