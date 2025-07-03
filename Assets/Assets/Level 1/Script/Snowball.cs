@@ -7,7 +7,7 @@ public class Snowball : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    [SerializeField] private float speed = 10f;         // kecepatan snowball
+    [SerializeField] private float speed = 20f;         // kecepatan snowball
     [SerializeField] private float rotationSpeed = 360f; // putaran snowball (derajat per detik)
 
     void Start()
