@@ -9,6 +9,7 @@ public class JebakanMusuh : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.gravityScale = 0f;
     }
 
     public void Drop()
@@ -16,13 +17,14 @@ public class JebakanMusuh : MonoBehaviour
         if (!hasDropped)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 1f;
             hasDropped = true;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (hasDropped)
+        if (hasDropped && other.CompareTag("Ground"))
         {
             rb.bodyType = RigidbodyType2D.Kinematic;
             rb.velocity = Vector2.zero;

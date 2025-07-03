@@ -11,10 +11,16 @@ public class PlayerWin : MonoBehaviour
     {
         if (other.CompareTag("Finish") && !hasEntered)
         {
+            // ❌ Kalau heart belum diambil, batal masuk
+            if (GameManager.Instance.heartCount < 1)
+            {
+                Debug.Log("❌ Belum ambil heart, gabisa masuk Finish.");
+                return;
+            }
+
             hasEntered = true;
             Debug.Log($"{gameObject.name} Masuk Igloo!");
 
-            // Hilangkan visual player
             if (playerSprite != null)
                 playerSprite.SetActive(false);
 

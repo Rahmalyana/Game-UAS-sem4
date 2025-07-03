@@ -10,6 +10,8 @@ TagManager:
   - MovingPlatform
   - balok
   - cewek
+  - Trap
+  - Jebakan
   layers:
   - Default
   - TransparentFX
