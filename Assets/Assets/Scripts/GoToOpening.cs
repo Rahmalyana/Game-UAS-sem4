@@ -7,7 +7,7 @@ public class GoToOpening : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Opening");
+            SceneManager.LoadScene("Home");
         }
     }
 }
