@@ -8,7 +8,7 @@ public class EscToMainMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("ESC ditekan, pindah ke main menu");
-            SceneManager.LoadScene("opening");
+            SceneManager.LoadScene("PilihLevel");
         }
     }
 }

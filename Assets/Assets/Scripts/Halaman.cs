@@ -15,20 +15,21 @@ public class Halaman : MonoBehaviour
     public string EnterScene;
     public string EscapeScene;
     public bool isEscapeForQuit = false;
+    bool showResetConfirm = false;
 
     void Start()
     {
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
-        // === RESET OTOMATIS JIKA SEMUA LEVEL SUDAH DIBUKA ===
-        if (unlockedLevel >= 3)
-        {
-            Debug.Log("Semua level sudah terbuka. Reset progress dan mulai dari Level-1...");
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
-            SceneManager.LoadScene("Level-1");
-            return; // hentikan eksekusi lanjut
-        }
+        // // === RESET OTOMATIS JIKA SEMUA LEVEL SUDAH DIBUKA ===
+        // if (unlockedLevel >= 3)
+        // {
+        //     Debug.Log("Semua level sudah terbuka. Reset progress dan mulai dari Level-1...");
+        //     PlayerPrefs.DeleteAll();
+        //     PlayerPrefs.Save();
+        //     SceneManager.LoadScene("PilihLevel");
+        //     return; // hentikan eksekusi lanjut
+        // }
 
         // Set button level
         SetButtonState(buttonLevel1, true);
@@ -103,8 +104,13 @@ public class Halaman : MonoBehaviour
     {
         Debug.Log("Progress di-reset manual.");
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("UnlockedLevel", 1); // default
         PlayerPrefs.Save();
-        SceneManager.LoadScene("Level-1");
+        SceneManager.LoadScene("PilihLevel"); // Atau ganti ke scene awal kamu
+    }
+    public void ResetButtonPressed()
+    {
+        showResetConfirm = true;
     }
 
     void OnGUI()
@@ -124,6 +130,19 @@ public class Halaman : MonoBehaviour
             if (GUI.Button(new Rect(Screen.width / 2 + 20, Screen.height / 2, 80, 30), "Tidak"))
             {
                 showExitPopup = false;
+            }
+        }
+
+        if (showResetConfirm)
+        {
+            GUI.Box(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 75, 300, 150), "Yakin reset progress?");
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2, 80, 30), "Ya"))
+            {
+                ResetProgress();
+            }
+            if (GUI.Button(new Rect(Screen.width / 2 + 20, Screen.height / 2, 80, 30), "Tidak"))
+            {
+                showResetConfirm = false;
             }
         }
     }
