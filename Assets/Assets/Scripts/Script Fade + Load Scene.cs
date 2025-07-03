@@ -7,7 +7,7 @@ public class VideoEndToScene : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public CanvasGroup fadeCanvasGroup; // drag FadePanel di sini
-    public string nextSceneName = "MainMenu";
+    public string nextSceneName = "PilihLevel";
 
     public float fadeDuration = 1.5f;
 
