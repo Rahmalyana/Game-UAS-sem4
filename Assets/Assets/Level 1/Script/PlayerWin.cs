@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerWin : MonoBehaviour
 {
     public GameObject playerSprite; // Seret visual player ke sini
+    public GameObject winPanel;     // Seret panel UI "MENANG" dari Canvas
     public static int playersInIgloo = 0; // Shared antar pemain
     private bool hasEntered = false; // Cegah double trigger
 
@@ -11,7 +12,6 @@ public class PlayerWin : MonoBehaviour
     {
         if (other.CompareTag("Finish") && !hasEntered)
         {
-            // ❌ Kalau heart belum diambil, batal masuk
             if (GameManager.Instance.heartCount < 1)
             {
                 Debug.Log("❌ Belum ambil heart, gabisa masuk Finish.");
@@ -36,23 +36,38 @@ public class PlayerWin : MonoBehaviour
 
     void WinLevel()
     {
-        // Simpan nama level terakhir yang dimainkan
         string currentScene = SceneManager.GetActiveScene().name;
         PlayerPrefs.SetString("LastLevel", currentScene);
 
-        // Ambil level keberapa yang saat ini dibuka
         int currentUnlocked = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
-        // Cek apakah kita perlu unlock level berikutnya
+        // Unlock level 2 atau 3 jika perlu
         if (currentScene == "Level-1" && currentUnlocked < 2)
         {
             PlayerPrefs.SetInt("UnlockedLevel", 2);
-            Debug.Log("Level 2 telah dibuka!");
+        }
+        else if (currentScene == "Level-2" && currentUnlocked < 3)
+        {
+            PlayerPrefs.SetInt("UnlockedLevel", 3);
         }
 
-        PlayerPrefs.Save(); // Simpan ke storage
+        PlayerPrefs.Save();
 
-        // Pindah ke halaman pilih level
-        SceneManager.LoadScene("PilihLevel");
+        // Jika ini level terakhir (Level-3), tampilkan panel menang
+        if (currentScene == "Level-3")
+        {
+            if (winPanel != null)
+            {
+                winPanel.SetActive(true); // Tampilkan panel menang
+            }
+            else
+            {
+                Debug.LogWarning("Win Panel belum di-assign ke script!");
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene("PilihLevel");
+        }
     }
 }

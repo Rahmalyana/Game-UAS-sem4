@@ -10,7 +10,16 @@ public class PlayerDeath : MonoBehaviour
     {
         if (collision.CompareTag("Danger"))
         {
-            Debug.Log("Game Over: Terkena bahaya!");
+            Debug.Log("Game Over: Terkena bahaya! (Trigger)");
+            StartCoroutine(GameOverDelay());
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Danger"))
+        {
+            Debug.Log("Game Over: Terkena bahaya! (Collision)");
             StartCoroutine(GameOverDelay());
         }
     }

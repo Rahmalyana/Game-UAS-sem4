@@ -79,19 +79,32 @@ public class Halaman : MonoBehaviour
     public void Help() => SceneManager.LoadScene("Help");
     public void Exit() => showExitPopup = true;
     public void Kembali() => SceneManager.LoadScene("PilihLevel");
-    public void KembaliKeMenuPlay() => SceneManager.LoadScene("MenuPlay");
+    public void CutScene() => SceneManager.LoadScene("CutScene");
+    public void OpenLevel1()
+    {
+        PlayerPrefs.SetString("LastLevel", "Level-1");
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("Level-1");
+    }
 
-    public void OpenLevel1() => SceneManager.LoadScene("Level-1");
     public void OpenLevel2()
     {
         if (PlayerPrefs.GetInt("UnlockedLevel", 1) >= 2)
+        {
+            PlayerPrefs.SetString("LastLevel", "Level-2");
+            PlayerPrefs.Save();
             SceneManager.LoadScene("Level-2");
+        }
     }
 
     public void OpenLevel3()
     {
         if (PlayerPrefs.GetInt("UnlockedLevel", 1) >= 3)
+        {
+            PlayerPrefs.SetString("LastLevel", "Level-3");
+            PlayerPrefs.Save();
             SceneManager.LoadScene("Level-3");
+        }
     }
 
     public void UlangiLevel()
