@@ -12,16 +12,21 @@ public class PlayerWin : MonoBehaviour
     {
         if (other.CompareTag("Finish") && !hasEntered)
         {
+            // ❌ Kalau heart belum diambil, batal masuk
+            if (GameManager.Instance.heartCount < 1)
+            {
+                Debug.Log("❌ Belum ambil heart, gabisa masuk Finish.");
+                return;
+            }
+
             hasEntered = true;
             Debug.Log($"{gameObject.name} Masuk Igloo!");
 
-            // Hilangkan visual player
             if (playerSprite != null)
                 playerSprite.SetActive(false);
 
             playersInIgloo++;
 
-            // Jika kedua pemain sudah masuk
             if (playersInIgloo >= 2)
             {
                 Debug.Log("Kedua pemain masuk igloo! MENANG!");
@@ -32,8 +37,8 @@ public class PlayerWin : MonoBehaviour
 
     void WinLevel()
     {
-        // Ganti dengan nama scene selanjutnya jika ingin pindah
-        // SceneManager.LoadScene("NextScene");
-        Debug.Log("LEVEL SELESAI!");
+        Debug.Log("🎉 LEVEL SELESAI!");
+        // Bisa ditambah panel selesai di sini
+        // Atau biarkan kosong karena ini level terakhir
     }
 }
