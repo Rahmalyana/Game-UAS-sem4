@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Halaman : MonoBehaviour
 {
     private bool showExitPopup = false;
 
-    [Header("Level Buttons")]
-    public GameObject buttonLevel1;
-    public GameObject buttonLevel2;
-    public GameObject buttonLevel3;
+    [Header("Level Buttons (UI)")]
+    public Button buttonLevel1;
+    public Button buttonLevel2;
+    public Button buttonLevel3;
 
     [Header("Level Scene Names")]
     public string EnterScene;
@@ -19,26 +20,27 @@ public class Halaman : MonoBehaviour
     {
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
-        SetButtonState(buttonLevel1, true); // Level 1 selalu aktif
+        // Level 1 selalu aktif
+        SetButtonState(buttonLevel1, true);
         SetButtonState(buttonLevel2, unlockedLevel >= 2);
         SetButtonState(buttonLevel3, unlockedLevel >= 3);
     }
 
-    void SetButtonState(GameObject button, bool isUnlocked)
+    void SetButtonState(Button button, bool isUnlocked)
     {
         if (button == null) return;
 
-        var sr = button.GetComponent<SpriteRenderer>();
-        if (sr != null)
-        {
-            Color c = sr.color;
-            c.a = isUnlocked ? 1f : 0.4f;
-            sr.color = c;
-        }
+        // Aktifkan atau nonaktifkan interaksi tombol
+        button.interactable = isUnlocked;
 
-        var col = button.GetComponent<Collider2D>();
-        if (col != null)
-            col.enabled = isUnlocked;
+        // Opsional: ubah transparansi visual (warna gambar)
+        var image = button.GetComponent<Image>();
+        if (image != null)
+        {
+            Color c = image.color;
+            c.a = isUnlocked ? 1f : 0.4f;
+            image.color = c;
+        }
     }
 
     void Update()
@@ -52,7 +54,7 @@ public class Halaman : MonoBehaviour
         {
             if (isEscapeForQuit)
             {
-                showExitPopup = true; // tampilkan popup konfirmasi
+                showExitPopup = true;
             }
             else
             {
@@ -61,13 +63,12 @@ public class Halaman : MonoBehaviour
         }
     }
 
-    // === Fungsi Button Navigasi ===
+    // === Fungsi Navigasi Scene ===
     public void Home() => SceneManager.LoadScene("Home");
     public void PilihLevel() => SceneManager.LoadScene("PilihLevel");
     public void Credit() => SceneManager.LoadScene("Credit");
-
+    public void Help() => SceneManager.LoadScene("Help");
     public void Exit() => showExitPopup = true;
-
     public void Kembali() => SceneManager.LoadScene("PilihLevel");
     public void KembaliKeMenuPlay() => SceneManager.LoadScene("MenuPlay");
 
