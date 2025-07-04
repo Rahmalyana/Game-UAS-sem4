@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Assets/Scenes/Home.unity
     guid: bd211a8c95a53c145825a4f18888fc9b
   - enabled: 1
+    path: Assets/Assets/Scenes/help.unity
+    guid: 5dd924ceb92698e4c8475e60eb11fd7e
+  - enabled: 1
     path: Assets/Assets/Scenes/credit.unity
     guid: 284d7022d36327641802d3f80107731e
   - enabled: 1
@@ -18,10 +21,10 @@ EditorBuildSettings:
     path: Assets/Assets/Scenes/PilihLevel.unity
     guid: 4de7fd0438e198246ac8dfff2a341a3d
   - enabled: 1
-    path: Assets/Assets/Scenes/Level-2.unity
+    path: Assets/Assets/Scenes/Level-1.unity
     guid: 828a75750f6b9694680ecf50dbd21fbf
   - enabled: 1
-    path: Assets/Assets/Scenes/Level-1.unity
+    path: Assets/Assets/Scenes/Level-2.unity
     guid: 11f0052f104fa054c91e7d670e051dbf
   - enabled: 1
     path: Assets/Assets/Scenes/Level-3.unity
@@ -29,7 +32,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets/Scenes/GameOver.unity
     guid: 8f410f4ec7316fd47a836cfb003e540c
-  - enabled: 1
-    path: Assets/Assets/Scenes/Help.unity
-    guid: 5dd924ceb92698e4c8475e60eb11fd7e
   m_configObjects: {}

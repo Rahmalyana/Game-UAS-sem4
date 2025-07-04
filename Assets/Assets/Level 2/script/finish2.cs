@@ -14,6 +14,13 @@ public class finish2 : MonoBehaviour
     {
         if (!hasEntered && other.CompareTag(playerTag))
         {
+            // Cek apakah pemain sudah mengambil 2 heart
+            if (GameManager.Instance.heartCount < 2)
+            {
+                Debug.Log("❌ Belum ambil 2 heart, gabisa masuk Finish.");
+                return;
+            }
+
             hasEntered = true;
             Debug.Log($"{playerTag} masuk zona finish!");
 

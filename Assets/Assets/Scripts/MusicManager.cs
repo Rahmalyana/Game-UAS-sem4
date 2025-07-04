@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour
     {
         if (audioSource == null) return;
 
-        if (scene.name.StartsWith("Level-"))
+            if (scene.name.StartsWith("Level-") || scene.name == "CutScene")
         {
             audioSource.Pause(); //  Jangan destroy
         }
